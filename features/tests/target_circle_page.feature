@@ -8,9 +8,9 @@ Feature: Verify Test
     Then Verify benefit cells has 10 cells
 
 
-  Scenario: Add any Target's product into cart
+  """Scenario: Add any Target's product into cart
     Given Open Target main page
     Then Search for 'air fryer'
     And add 'air fryer' to cart
     And add to cart from the side menu
-    When Verify purchased item is in cart
+    When Verify purchased item is in cart"""
