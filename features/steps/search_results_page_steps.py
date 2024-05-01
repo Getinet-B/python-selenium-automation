@@ -1,5 +1,8 @@
 from selenium.webdriver.common.by import By
-from behave import then
+from selenium.webdriver.support import expected_conditions as EC
+from pages.header import Header
+from behave import given, when, then
+from selenium import webdriver
 from time import sleep
 
 
@@ -16,6 +19,12 @@ def verify_search_results(context, expected_product):
     #context.app.search_result_page.verify_search_results(expected_item)
 
 
+@then('Verify that URL has {partial_url}')
+def verify_search_page_url(context, partial_url):
+    #context.wait.until(EC.url_contains(partial_url), message=f'Url does not contain {partial_url}')
+    context.app.search_result_page.verify_partial_url(partial_url)
+
+
 @then('Verify that every product has a name and an image')
 def verify_products_name_img(context):
     # To see ALL listings (comment out if you only check top ones):
@@ -29,3 +38,10 @@ def verify_products_name_img(context):
         title = product.find_element(*PRODUCT_TITLE).text
         assert title, 'Product title not shown'
         product.find_element(*PRODUCT_IMG)
+
+
+@then('verify user is logged in')
+def verify_login(context):
+    context.app.sign_in_page.verify_login()
+
+

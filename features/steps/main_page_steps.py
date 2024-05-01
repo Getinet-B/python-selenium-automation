@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
+from pages.header import Header
 from behave import given, when, then
+from selenium import webdriver
 
 
 SEARCH_INPUT = (By.ID, 'search')
@@ -62,3 +65,24 @@ def verify_header_links(context, expected_amount): # expected_amount = '5'
     expected_amount = int(expected_amount)   # '5' (str) => 5 (int)
     links = context.driver.find_elements(*HEADER_LINKS)
     assert len(links) == expected_amount, f'Expected {expected_amount} links but got {len(links)}'
+
+
+@when('click Sign In Icon')
+def click_sign_in(context):
+    context.app.sign_in_page.click_sign_in()
+
+
+@when('click Sign In from side navigation menu')
+def nav_menu_click_sign_in(context):
+    context.app.sign_in_page.nav_menu_click_sign_in()
+
+
+@when('Input "{email}" and "{password}" on SignIn page')
+def input_email_pw(context, email, password):
+    context.app.sign_in_page.input_email_pw(email, password)
+
+
+@when('click Sign in to log in')
+def click_signin(context):
+    context.app.sign_in_page.click_signin()
+
