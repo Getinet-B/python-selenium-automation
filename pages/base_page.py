@@ -25,7 +25,7 @@ class BasePage:
 
     def wait_until_clickable_click(self, *locator):
         self.wait.until(
-            EC.element_to_be_clickable(locator),
+            EC.element_to_be_clickable(*locator),
             f'Element not clickable by {locator}'
         ).click()
 
@@ -44,17 +44,17 @@ class BasePage:
     def get_current_window(self):
         current_window = self.driver.current_window_handle
         print('Current:', current_window)
-        print('All windows:', self.driver.window_handles)
+        print('All Windows:', self.driver.window_handles)
         return current_window
 
     def switch_to_new_window(self):
         self.wait.until(EC.new_window_is_opened)
-        all_windows = self.driver.window_handles
+        all_windows = self.driver.window_handles #[win1, win2, ...]
         print('All windows:', self.driver.window_handles)
         print('Switching to...', all_windows[1])
         self.driver.switch_to.window(all_windows[1])
 
-    def switch_window_by_id(self, window_id):
+    def switch_new_window_by_id(self, window_id):
         print('Switching to...', window_id)
         self.driver.switch_to.window(window_id)
 
@@ -77,3 +77,4 @@ class BasePage:
 
     def close(self):
         self.driver.close()
+

@@ -5,6 +5,7 @@ from pages.header import Header, SignInPage
 from pages.main_page import MainPage
 from pages.search_result_page import SearchResultsPage
 from pages.target_app_page import TargetAppPage
+from pages.tc_signin_page import TermsConditionSigninPage
 
 
 class Application:
@@ -16,6 +17,7 @@ class Application:
         self.search_result_page = SearchResultsPage(driver)
         self.sign_in_page = SignInPage(driver)
         self.target_app_page = TargetAppPage(driver)
+        self.tc_signin_page = TermsConditionSigninPage(driver)
         self.email_input_locator = (By.ID, 'username')
         self.password_input_locator = (By.ID, 'password')
         self.sign_in_button_locator = (By.CSS_SELECTOR, 'button[data-test="SignInSubmitButton"]')
