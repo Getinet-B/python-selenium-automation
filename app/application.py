@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-from pages.cart_page import CartPage
+#from pages.cart_page import CartPage
 from pages.header import Header, SignInPage
 from pages.main_page import MainPage
 from pages.search_result_page import SearchResultsPage
@@ -11,7 +11,7 @@ from pages.tc_signin_page import TermsConditionSigninPage
 class Application:
     def __init__(self, driver):
         self.base_page = BasePage(driver)
-        self.cart_page = CartPage(driver)
+        #self.cart_page = CartPage(driver)
         self.header = Header(driver)
         self.main_page = MainPage(driver)
         self.search_result_page = SearchResultsPage(driver)
