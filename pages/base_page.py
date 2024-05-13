@@ -1,6 +1,8 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from support.logger import logger
+
 
 class BasePage:
 
@@ -9,15 +11,18 @@ class BasePage:
         self.wait = WebDriverWait(self.driver, 10)
 
     def open(self, url):
+        logger.info(f'Opening {url}')
         self.driver.get(url)
 
     def find_element(self, *locator):
+        logger.info(f'Searching by {locator}')
         return self.driver.find_element(*locator)
 
     def find_elements(self, *locator):
         return self.driver.find_elements(*locator)
 
     def click(self, *locator):
+        logger.info(f'Clicking by {locator}')
         self.find_element(*locator).click()
 
     def input_text(self, text, *locator):
@@ -58,11 +63,11 @@ class BasePage:
         print('Switching to...', window_id)
         self.driver.switch_to.window(window_id)
 
-    def verity_text(self, expected_text, *locator):
+    def verify_text(self, expected_text, *locator):
         actual_text = self.find_element(*locator).text
         assert actual_text == expected_text, f'Expected {expected_text}, but got {actual_text}'
 
-    def verity_partial_text(self, expected_text, *locator):
+    def verify_partial_text(self, expected_text, *locator):
         actual_text = self.find_element(*locator).text
         assert expected_text in actual_text, f'Expected {expected_text} not in {actual_text}'
 
